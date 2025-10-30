@@ -34,8 +34,8 @@
 
             <!-- Tombol aksi -->
             <div class="buttons">
-              <button class="buy-btn">Buy now</button>
-              <button class="next-btn" :disabled="isLoading" @click="nextProduct">
+              <button class="buy-btn" :style="buyButtonStyle">Buy now</button>
+              <button class="next-btn" :style="nextButtonStyle" :disabled="isLoading" @click="nextProduct">
                 {{ isLoading ? "Loading..." : "Next product" }}
               </button>
             </div>
@@ -92,11 +92,13 @@ export default {
         this.product = data;
 
         // Tentukan tema halaman berdasarkan kategori produk
-        if (data.category?.includes("men")) {
-          this.pageClass = "page-men";
-          this.isAvailable = true;
-        } else if (data.category?.includes("women")) {
+        const category = data.category ? data.category.toLowerCase() : "";
+
+        if (category.includes("women's")) {
           this.pageClass = "page-women";
+          this.isAvailable = true;
+        } else if (category.includes("men's")) {
+          this.pageClass = "page-men";
           this.isAvailable = true;
         } else {
           this.pageClass = "page-unavailable";
@@ -139,6 +141,51 @@ export default {
    */
   mounted() {
     this.fetchProduct();
+  },
+
+  computed: {
+    buyButtonStyle() {
+      if (this.pageClass === "page-men") {
+        return {
+          backgroundColor: "#002772",
+          borderColor: "#002772",
+          color: "#ffffff",
+        };
+      } else if (this.pageClass === "page-women") {
+        return {
+          backgroundColor: "#720060",
+          borderColor: "#720060",
+          color: "#ffffff",
+        };
+      } else {
+        return {
+          backgroundColor: "#3f3f3f",
+          borderColor: "#3f3f3f",
+          color: "#ffffff",
+        };
+      }
+    },
+    nextButtonStyle() {
+      if (this.pageClass === "page-men") {
+        return {
+          backgroundColor: "#ffffff",
+          borderColor: "#002772",
+          color: "#002772",
+        };
+      } else if (this.pageClass === "page-women") {
+        return {
+          backgroundColor: "#ffffff",
+          borderColor: "#720060",
+          color: "#720060",
+        };
+      } else {
+        return {
+          backgroundColor: "#ffffff",
+          borderColor: "#3f3f3f",
+          color: "#3f3f3f",
+        };
+      }
+    },
   },
 };
 </script>

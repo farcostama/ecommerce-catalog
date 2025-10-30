@@ -170,9 +170,7 @@
   margin-top: 10px;
 }
 
-/* =========================================================
-   Action Buttons — Base Styles (Before Theming)
-   ========================================================= */
+/* Button Styles */
 .buttons {
   display: flex;
   gap: 10px;
@@ -180,66 +178,68 @@
   flex-wrap: wrap;
 }
 
-.buy-btn,
-.next-btn {
+/* Base button styles */
+.product-page .buy-btn,
+.product-page .next-btn {
   flex: 1;
   padding: 12px;
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
-  background-color: transparent;
-  color: inherit;
+  border: 2px solid;
+  min-width: 120px;
 }
 
-/* Disabled State */
-.next-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Hover Feedback */
-.buy-btn:hover,
-.next-btn:hover:not(:disabled) {
-  filter: brightness(1.1);
-  transform: translateY(-2px);
-}
-
-/* =========================================================
-   Button Theme Variants — Per Page Class
-   ========================================================= */
-/* MEN THEME */
-.page-men .buy-btn {
+/* Men's theme */
+.product-page.page-men .buy-btn {
   background-color: var(--men-text);
+  border-color: var(--men-text);
   color: var(--white);
 }
-.page-men .next-btn {
+
+.product-page.page-men .next-btn {
   background-color: var(--white);
   border-color: var(--men-text);
   color: var(--men-text);
 }
 
-/* WOMEN THEME */
-.page-women .buy-btn {
+/* Women's theme */
+.product-page.page-women .buy-btn {
   background-color: var(--women-text);
+  border-color: var(--women-text);
   color: var(--white);
 }
-.page-women .next-btn {
+
+.product-page.page-women .next-btn {
   background-color: var(--white);
   border-color: var(--women-text);
   color: var(--women-text);
 }
 
-/* UNAVAILABLE THEME */
-.page-unavailable .buy-btn {
-  background-color: var(--unavailable-text);
+/* Unavailable theme */
+.product-page.page-unavailable .buy-btn {
+  background-color: var(--gray);
+  border-color: var(--gray);
   color: var(--white);
 }
-.page-unavailable .next-btn {
+
+.product-page.page-unavailable .next-btn {
   background-color: var(--white);
-  border-color: var(--unavailable-text);
-  color: var(--unavailable-text);
+  border-color: var(--gray);
+  color: var(--gray);
+}
+
+/* Button states */
+.product-page .next-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.product-page .buy-btn:hover,
+.product-page .next-btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
 }
 
 /* =========================================================
