@@ -248,18 +248,35 @@
 .unavailable {
   text-align: center;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.unavailable p {
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.unavailable .next-btn {
+  width: 270px; /* Sesuaikan dengan lebar teks di atas */
+  border: 1px solid var(--gray);
+  padding: 8px 0;
+  font-size: 14px;
 }
 
 .sad-face {
-  font-size: 80px;
-  opacity: 0.8;
   margin-bottom: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sad-face img {
-  width: 250px;
+  width: 100%;
   height: auto;
-  opacity: 0.9;
+  max-width: 600px;
 }
 
 /* =========================================================
@@ -337,23 +354,27 @@
 
 @media (max-width: 768px) {
   .product-page {
-    padding: 24px 12px;
-    align-items: stretch;
+    padding: 16px;
+    align-items: center;
+    min-height: 100dvh;
   }
 
   .product-card {
-    padding: 24px 16px;
+    padding: 24px 20px;
     text-align: center;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 8px;
   }
 
   .product-info {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
   }
 
   .product-image {
-    width: 200px;
+    width: 180px;
     max-width: 80%;
   }
 
@@ -362,54 +383,176 @@
   }
 
   .product-details h2 {
-    font-size: 18px;
-    margin-bottom: 6px;
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.4;
   }
 
   .category-rating {
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    margin-bottom: 12px;
   }
 
   .desc {
     font-size: 14px;
-    margin-top: 6px;
+    margin: 12px 0;
+    line-height: 1.5;
   }
+
   .price {
     font-size: 16px;
+    margin: 12px 0;
   }
 
   .buttons {
     flex-direction: column;
     width: 100%;
+    gap: 12px;
+    margin-top: 16px;
   }
 
   .buy-btn,
   .next-btn {
     width: 100%;
     padding: 12px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  /* Optimasi untuk unavailable state */
+  .unavailable {
+    padding: 20px;
+  }
+
+  .sad-face {
+    width: 90%;
+    margin-bottom: 16px;
+  }
+
+  .sad-face img {
+    max-width: 100%;
+    opacity: 1;
+  }
+
+  .unavailable p {
     font-size: 15px;
+    margin-bottom: 20px;
+    padding: 0 16px;
+  }
+
+  .unavailable .next-btn {
+    width: 85%;
+    max-width: 280px;
   }
 }
 
 @media (max-width: 480px) {
+  .product-page {
+    padding: 12px;
+  }
+
   .product-card {
-    padding: 20px 14px;
+    padding: 20px 16px;
+    border-radius: 6px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
   .product-image {
-    width: 160px;
+    width: 140px;
   }
+
   .product-details h2 {
-    font-size: 16px;
+    font-size: 15px;
   }
+
   .desc {
     font-size: 13px;
+    line-height: 1.4;
   }
+
+  .category {
+    font-size: 13px;
+  }
+
   .price {
     font-size: 15px;
   }
+
   .star {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  /* Optimasi untuk unavailable state di layar kecil */
+  .unavailable {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+  }
+
+  .sad-face {
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 24px;
+    padding-left: 40px;
+  }
+
+  .unavailable p {
+    font-size: 16px;
+    margin-bottom: 16px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Reset khusus untuk tombol next di unavailable state */
+  .unavailable .next-btn {
+    all: unset;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    min-height: unset !important;
+    height: 30px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    font: 11px Arial, sans-serif !important;
+    text-align: center;
+    border: 1px solid var(--gray);
+    border-radius: 1px;
+    color: var(--gray);
+    background: var(--white);
+    cursor: pointer;
+    flex: 0 0 auto !important;
+  }
+
+  /* Mencegah efek hover/active yang tidak diinginkan */
+  .unavailable .next-btn:hover,
+  .unavailable .next-btn:active {
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  .unavailable .next-btn:hover {
+    background-color: #1e4b8f;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .unavailable .next-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 }
